@@ -20,6 +20,11 @@ gem 'http'
 gem 'parallel'
 gem 'bootsnap', '>= 1.1.0', require: false
 
+gem 'devise'
+gem 'toastr-rails'
+gem 'jquery-rails'
+gem 'cancancan'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
