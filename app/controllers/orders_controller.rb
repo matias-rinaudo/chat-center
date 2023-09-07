@@ -1,9 +1,12 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_user! 
+  authorize_resource
   before_action :set_order, only: %i[ show edit update destroy ]
 
   # GET /orders or /orders.json
   def index
-    @orders = Order.all
+    @q = Order.ransack(params[:q])
+    @orders = @q.result(distinct: true)
   end
 
   # GET /orders/1 or /orders/1.json
@@ -22,6 +25,7 @@ class OrdersController < ApplicationController
   # POST /orders or /orders.json
   def create
     @order = Order.new(order_params)
+    @order.shipping_method = Order::STATUS.first
 
     respond_to do |format|
       if @order.save
@@ -57,6 +61,11 @@ class OrdersController < ApplicationController
     end
   end
 
+  def search
+    index
+    render :index
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_order
@@ -65,6 +74,6 @@ class OrdersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def order_params
-      params.fetch(:order, {})
+      params.require(:order).permit(:product_id, :customer_name, :adress, :zip_code, :shipping_method)
     end
 end

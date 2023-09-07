@@ -57,6 +57,7 @@ module Fedex
     # @raise [ShipmentNotFound] if the shipment can't be found
     #
     def self.find(fedex_id)
+      byebug
       shipment = @shipments[id]
 
       raise ShipmentNotFound, "Shipment not found: #{id}" if shipment.blank?

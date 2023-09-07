@@ -1,6 +1,15 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Orders</h1>
+<h1>Pedidos</h1>
+
+<div>
+    <%= search_form_for @q, url: search_orders_path, html: { method: :post } do |f| %>
+        <%= f.text_field :created_at_gteq, class: "form-control", placeholder: "Desde" %>
+        <%= f.text_field :created_at_lteq, class: "form-control", placeholder: "Hasta" %>
+        <%= f.select :shipping_method_eq, Order::STATUS.map {|status| [status, status]}, {:include_blank => false}, { :class => 'form-control', multiple: false } %>
+        <%= f.submit :class => "btn btn-info", id: "button-search", class: 'btn btn-primary' %>
+    <% end %>
+</div>
 
 <table>
   <thead>
@@ -12,9 +21,14 @@
   <tbody>
     <% @orders.each do |order| %>
       <tr>
-        <td><%= link_to 'Show', order %></td>
-        <td><%= link_to 'Edit', edit_order_path(order) %></td>
-        <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Cliente</th>
+        <th>Direccion</th>
+        <th>Estado de envio</th>
+      </tr>
+      <tr>
+        <td><%= order.customer_name %></td>
+        <td><%= order.full_adress %></td>
+        <td><%= order.shipping_method %></td>
       </tr>
     <% end %>
   </tbody>
@@ -22,4 +36,4 @@
 
 <br>
 
-<%= link_to 'New Order', new_order_path %>
+<%= link_to 'Nuevo Pedido', new_order_path %>
