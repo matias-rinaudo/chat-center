@@ -36,6 +36,8 @@ group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'rspec-rails', '~> 3.9.1'
+  gem 'ffaker', '~> 2.18.0'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
@@ -47,4 +49,7 @@ group :test do
   gem 'factory_bot_rails'
   gem 'database_cleaner'
   gem 'capybara'
+  gem 'shoulda-matchers'
+  gem 'webmock'
+  gem 'simplecov', '~> 0.21.2', require: false
 end
