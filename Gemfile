@@ -26,6 +26,7 @@ gem 'jquery-rails'
 gem 'cancancan'
 gem 'simple_form'
 gem 'ransack'
+gem 'whenever', require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -38,6 +39,7 @@ group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'rspec-rails', '~> 3.9.1'
   gem 'ffaker', '~> 2.18.0'
+  gem 'dotenv-rails'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
