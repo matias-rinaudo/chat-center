@@ -14,8 +14,7 @@ class Order < ApplicationRecord
   private
 
   def create_shipment
-    shipment = Fedex::Shipment.new
-    shipment.create
+    shipment = Fedex::Shipment.new.create
 
     self.fedex_id = shipment.id if shipment.present?
 

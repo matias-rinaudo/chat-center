@@ -19,7 +19,6 @@ module Fedex
     end
 
     def self.find(fedex_id)
-      byebug
       shipments = Fedex::Shipment.all
       shipment = shipments.select{|shipment| shipment.id == fedex_id}.last
 

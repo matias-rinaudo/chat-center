@@ -7,7 +7,7 @@ namespace :update_shipping_status_job do
       shipment = Fedex::Shipment.find(order.fedex_id) 
       order.shipping_method = shipment.status
 
-      OrderMailer.shipping_method(order_id: order.id).deliver_now
+      OrderMailer.success_update_status_order(order_id: order.id).deliver_now
 
       order.save
     end
