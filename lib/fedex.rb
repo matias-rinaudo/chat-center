@@ -4,8 +4,8 @@ module Fedex
   class Shipment
     attr_accessor :status, :id
 
-    @@all = []
-    @@next_id = 0
+    @@all ||= []
+    @@next_id ||= 0
 
     STATUS = [
       'awaiting_pickup',
