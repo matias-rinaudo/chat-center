@@ -18,6 +18,8 @@ module Orders
         context.order.shipping_method = context.shipment.status
 
         context.order.save
+
+        context.status = :ok
       rescue
         context.fail!(error: "Error updating the shipping status of the order ID: #{context.order.id}")
       end
